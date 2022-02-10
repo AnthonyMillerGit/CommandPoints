@@ -8,24 +8,26 @@ import axios from 'axios'
 
 
 
-function App() {
 
+
+
+function App() {
 
   const [cardImg, setCardImg] = useState()
   const [cardName, setCardName] = useState()
+  const [cardNumber, setCardNumber] = useState()
 
-
-  useEffect(() => {
-    axios.get('https://api.magicthegathering.io/v1/cards')
-    .then(res => {
-      console.log(res.data)
-      setCardImg(res.data.cards[0].imageUrl)
-      setCardName(res.data.cards[0].name)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  },[])
+  // useEffect(() => {
+  //   axios.get(`https://api.magicthegathering.io/v1/cards/${cardNumber}`)
+  //   .then(res => {
+  //     console.log(res.data)
+  //     setCardImg(res.data.card.imageUrl)
+  //     setCardName(res.data.card.name)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // },[])
 
 
   return (
