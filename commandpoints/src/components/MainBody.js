@@ -1,29 +1,32 @@
-import React, { useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
-import useForm from '../hooks/useForm'
+
+
+const MainBody = () => {
+
+    const [cardName, setCardName] = useState()
 
 
 
-const MainBody = (props) => {
+    const handleChanges = e => {
+        setCardName({ ...cardName, [e.target.name]: e.target.value })
+    }
 
-    const [
-        values,
-        handleChanges,
-        handleSubmit
-    ] = useForm()
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios.get(`https://api.magicthegathering.io/v1/cards?=ugin`)
+            .then(res => {
+                console.log(res.data)
+                
+            })
+            .catch(err => {
+                console.log(err)
+        })
+    }  
 
-    // useEffect(() => {
-    //     axios.get(`https://api.magicthegathering.io/v1/cards/${cardNumber}`)
-    //     .then(res => {
-    //         console.log(res.data)
-    //         setCardImg(res.data.card.imageUrl)
-    //         setCardName(res.data.card.name)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },[])   
+
+
 
 
 
@@ -31,14 +34,14 @@ const MainBody = (props) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Card Number:
+                    Card Name:
                     <input
-                        name="cardNumber"
+                        name="cardName"
                         type="text"
-                        value={values.cardNumber}
                         onChange={handleChanges}
                      />
                 </label>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )

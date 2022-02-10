@@ -2,18 +2,16 @@ import './App.css';
 import Header from './components/Header'
 import MainBody from './components/MainBody'
 import Footer from './components/Footer'
-import React , { useEffect, useState } from 'react'
-import axios from 'axios'
 
 
 
 
 
 
-function App(props) {
 
-  const [cardImg, setCardImg] = useState()
-  const [cardName, setCardName] = useState()
+function App() {
+
+
  
 
 
@@ -34,8 +32,6 @@ function App(props) {
     <div className="App">
       <Header />
       <MainBody />
-      <h3>{cardName}</h3>
-      <img alt="" src={cardImg}/>
       <Footer />
     </div>
   );

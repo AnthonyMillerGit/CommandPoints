@@ -1,27 +1,35 @@
-import {useState} from 'react'
-
-const initialValue = {
-    cardNumber: '',
-}
+import { useState } from 'react'
+import axios from 'axios'
 
 
 
 const useForm = () => {
     
 
-    const [values, setValues] = useState(initialValue)
+
+    const [cardImg, setCardImg] = useState()
+    const [cardName, setCardName] = useState()
+    const [cardNumber, setCardNumber] = useState()
 
 
     const handleChanges = e => {
-        setValues({ ...values, [e.target.name]: e.target.value })
+        setCardNumber({ ...cardNumber, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
+        axios.get(`https://api.magicthegathering.io/v1/cards/${cardNumber}`)
+            .then(res => {
+                console.log(res.data)
+                setCardImg(res.data.card.imgUrl)
+                setCardName(res.data.name)
+            })
+            .catch(err => {
+                console.log(err)
+        })
+    }  
 
-    }
-
-    return [values, handleChanges, handleSubmit]
+    return [cardImg, cardName, cardNumber, handleChanges, handleSubmit]
 
 }
 
