@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <div>
             <Container>
-                <Title>EDH Card Power Rankings</Title>
+                <Title>EDH Card Power Level Rankings</Title>
             </Container>
         </div>
     )
