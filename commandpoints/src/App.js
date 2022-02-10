@@ -10,12 +10,12 @@ import axios from 'axios'
 
 
 
-
-function App() {
+function App(props) {
 
   const [cardImg, setCardImg] = useState()
   const [cardName, setCardName] = useState()
-  const [cardNumber, setCardNumber] = useState()
+ 
+
 
   // useEffect(() => {
   //   axios.get(`https://api.magicthegathering.io/v1/cards/${cardNumber}`)

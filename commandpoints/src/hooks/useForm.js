@@ -11,17 +11,9 @@ const useForm = () => {
 
     const [values, setValues] = useState(initialValue)
 
-    const inputChange = (name, value) => {
-        setValues({
-            ...values,
-            [name]: value
-        })
-    }
-
 
     const handleChanges = e => {
-        const { name } = e.target
-        inputChange(name)
+        setValues({ ...values, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = e => {

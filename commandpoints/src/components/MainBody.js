@@ -1,37 +1,17 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios'
 
-
-
-const initialValue = {
-    cardNumber: '',
-}
+import useForm from '../hooks/useForm'
 
 
 
+const MainBody = (props) => {
 
-const MainBody = () => {
-
-    const [values, setValues] = useState(initialValue)
-
-    const inputChange = (name, value) => {
-        setValues({
-            ...values,
-            [name]: value
-        })
-    }
-
-
-    const handleChanges = e => {
-        const { name } = e.target
-        inputChange(name)
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault()
-
-    }
-
+    const [
+        values,
+        handleChanges,
+        handleSubmit
+    ] = useForm()
 
     // useEffect(() => {
     //     axios.get(`https://api.magicthegathering.io/v1/cards/${cardNumber}`)
