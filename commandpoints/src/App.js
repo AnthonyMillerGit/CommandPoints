@@ -33,6 +33,7 @@ function App() {
       <Header />
       <MainBody />
       <h3>{cardName}</h3>
+      <img alt="" src={cardImg}/>
       <Footer />
     </div>
   );
