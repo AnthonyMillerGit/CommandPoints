@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 
-
 const MainBody = () => {
     const iState = {
         cards:  [],
@@ -11,7 +10,6 @@ const MainBody = () => {
 
     const [cardName, setCardName] = useState(iState.cardName)
     const [cards, setCards] = useState(iState.cards)
-
 
 
     const handleChanges = e => {
@@ -46,10 +44,15 @@ const MainBody = () => {
                         onChange={handleChanges}
                      />
                 </label>
-                <div>
-                    {cards.map((card) => (
-                        <p>{card.name}</p>
-                    ))}
+                <div>                   
+                        {cards.map(card => {
+                            card.hasOwnProperty('imageUrl') 
+                            return (
+                                <div>
+                                    <h3>{card.name}</h3>
+                                    <img alt='' src={card.imageUrl}/>
+                                </div>)
+                        })}         
                 </div>
                 <button type="submit">Submit</button>
             </form>
