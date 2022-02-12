@@ -4,8 +4,13 @@ import axios from 'axios'
 
 
 const MainBody = () => {
+    const iState = {
+        cards:  [],
+        cardName:  ''
+    }
 
-    const [cardName, setCardName] = useState()
+    const [cardName, setCardName] = useState(iState.cardName)
+    const [cards, setCards] = useState(iState.cards)
 
 
 
@@ -15,10 +20,10 @@ const MainBody = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.get(`https://api.magicthegathering.io/v1/cards?=ugin`)
+        axios.get(`https://api.magicthegathering.io/v1/cards?name=ugin`)
             .then(res => {
-                console.log(res.data)
-                
+                console.log(res.data.cards)
+                setCards(res.data.cards)
             })
             .catch(err => {
                 console.log(err)
@@ -41,6 +46,11 @@ const MainBody = () => {
                         onChange={handleChanges}
                      />
                 </label>
+                <div>
+                    {cards.map((card) => (
+                        <p>{card.name}</p>
+                    ))}
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
