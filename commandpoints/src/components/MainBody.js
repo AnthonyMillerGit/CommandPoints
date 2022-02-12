@@ -46,12 +46,15 @@ const MainBody = () => {
                 </label>
                 <div>                   
                         {cards.map(card => {
-                            card.hasOwnProperty('imageUrl') 
+                            if (card.hasOwnProperty('imageUrl')) {
                             return (
                                 <div>
                                     <h3>{card.name}</h3>
                                     <img alt='' src={card.imageUrl}/>
-                                </div>)
+                                </div>)}
+                            else {
+                                return null
+                            }
                         })}         
                 </div>
                 <button type="submit">Submit</button>
