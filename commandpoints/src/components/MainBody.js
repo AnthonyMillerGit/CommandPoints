@@ -8,17 +8,17 @@ const MainBody = () => {
         cardName:  ''
     }
 
-    const [cardName, setCardName] = useState(iState.cardName)
+
     const [cards, setCards] = useState(iState.cards)
 
 
     const handleChanges = e => {
-        setCardName({ ...cardName, [e.target.name]: e.target.value })
+        setCards( {cards: e.target.value})
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.get(`https://api.magicthegathering.io/v1/cards?name=ugin`)
+        axios.get(`https://api.magicthegathering.io/v1/cards`)
             .then(res => {
                 console.log(res.data.cards)
                 setCards(res.data.cards)
@@ -44,19 +44,6 @@ const MainBody = () => {
                         onChange={handleChanges}
                      />
                 </label>
-                <div>                   
-                        {cards.map(card => {
-                            if (card.hasOwnProperty('imageUrl')) {
-                            return (
-                                <div>
-                                    <h3>{card.name}</h3>
-                                    <img alt='' src={card.imageUrl}/>
-                                </div>)}
-                            else {
-                                return null
-                            }
-                        })}         
-                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
