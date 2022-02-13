@@ -2,25 +2,28 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 
-const initValues = {
-    cards:[],
-}
+
 
 
 
 const MainBody = () => {
 
-    const [cards, setCards] = useState(initValues.cards)
+    const [name, setName] = useState({ name : '' })
+    const [cards, setCards] = useState([])
 
 
     const handleChanges = e => {
-        setCards(...cards, e.target.value)
+        setName({[e.target.name]:e.target.value})
     }
+    console.log(cards)
+    console.log(name)
+
 
     const handleSubmit = e => {
-        e.preventDefault();
-        axios.get(`https://api.magicthegathering.io/v1/cards?name=ugin`)
+        e.preventDefault()
+        axios.get(`https://api.magicthegathering.io/v1/cards/?name=${name.name}`)
         .then(res => {
+            console.log(name)
             console.log(res.data.cards)
             setCards(res.data.cards)
         })
@@ -35,9 +38,9 @@ const MainBody = () => {
                 <label>
                     Card Name:
                     <input
-                        name="cardName"
+                        name="name"
                         type="text"
-                        onChange={() => handleChanges}
+                        onChange={handleChanges}
                      />
                 </label>
                 <div>                   
